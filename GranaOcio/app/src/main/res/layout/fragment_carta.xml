@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/fragment_evento"
+    android:background="#FFFFFF">
+
+
+
+    <com.parse.ParseImageView
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:id="@+id/imagen_evento"
+        android:layout_weight="1" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Título:"
+        android:textColor="#000000"
+        android:id="@+id/titulo_evento"
+        android:layout_weight="0.5" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Descripción:"
+        android:textColor="#000000"
+        android:id="@+id/descripcion_evento"
+        android:layout_weight="2"
+        />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lugar_evento"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Lugar:"
+        android:textColor="#000000"
+        android:layout_weight="0.75" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/hora_evento"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Hora:"
+        android:textColor="#000000"
+        android:layout_weight="0.75" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:id="@+id/boton_mapa"
+        android:text="Ver Mapa"
+        android:background="@drawable/fondo_boton_mapa_v21"
+        android:layout_weight="1"/>
+
+</LinearLayout>

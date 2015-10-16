@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="color_divider">#BDBDBD</color>
+    <color name="color_fondo_menu">#BDBDBD</color>
+
+    <color name="color_principal">#365984</color>
+    <color name="color_musica">#E00B21</color>
+    <color name="color_flamenco">#C654A5</color>
+    <color name="color_teatro">#ABD04D</color>
+    <color name="color_museos">#E1E43C</color>
+
+</resources>

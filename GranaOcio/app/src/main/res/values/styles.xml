@@ -1,0 +1,23 @@
+<resources>
+    <style name="AppTheme" parent="Base.Theme.AppCompat"/>
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat">
+
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        
+
+
+
+
+    </style>
+
+    <!---Estilo para las 3 lineas del despliegue del menu action bar-->
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
+    </style>
+
+
+</resources>

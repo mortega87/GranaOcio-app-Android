@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector>
+
+
+    <resources>
+        <color name="color_principal">#365984</color>
+    </resources>
+
+</selector>
