@@ -1,2 +1,2 @@
 # GranaOcio-app-Android
-Trabajo Fin de Grado Informática
+Trabajo Fin de Grado Ingeniería Informática
