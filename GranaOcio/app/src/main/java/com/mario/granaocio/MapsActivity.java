@@ -63,6 +63,8 @@ public class MapsActivity extends FragmentActivity {
         mMap.addMarker(new MarkerOptions().position(coordenada).title("Marcador"));
     }
 
+
+
     public void definirToolbar(){
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar_mapa);
 

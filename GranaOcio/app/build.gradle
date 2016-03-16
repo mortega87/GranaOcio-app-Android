@@ -20,9 +20,9 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile fileTree(include: 'Parse-*.jar', dir: 'libs')
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(dir: 'libs', include: 'Parse-*.jar')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.android.support:recyclerview-v7:22.2.1'
     compile 'com.android.support:cardview-v7:22.2.1'
@@ -31,4 +31,5 @@ dependencies {
     compile 'com.google.android.gms:play-services:7.5.0'
     compile files('C:/Users/Mario/Desktop/GranaOcio-App-master2/GranaOcio/.idea/libraries/Parse-1.9.4.jar')
     compile 'com.balysv:material-ripple:1.0.2'
+    compile files('C:/Users/mario/Documents/Repositorios_Git/GranaOcio-app-Android/GranaOcio/.idea/libraries/Parse-1.9.4.jar')
 }

@@ -24,9 +24,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by araluce1 on 31/07/2015.
- */
+
 public class Datos {
     static String objeto;
     static String variedad;
