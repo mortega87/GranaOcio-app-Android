@@ -35,6 +35,7 @@ public class Datos {
     static String descripcion;
     static ParseGeoPoint coordenadas;
     static Context contexto;
+    static int modificado;
     static List<Evento> items = new ArrayList<>();
 
     static ParseFile imagen;
@@ -69,6 +70,13 @@ public class Datos {
                         descripcion = object.getString("descripcion");
                         coordenadas = object.getParseGeoPoint("localizacion");
 
+                        if (object.getBoolean("modificado")){
+                            modificado = 1;
+                        }
+                        else{
+                            modificado = 0;
+                        }
+
                         View v = View.inflate(contexto, R.layout.fragment_carta, null);
                         ParseImageView imageView = (ParseImageView)v.findViewById(R.id.imagen_evento);
                         ParseFile imagen = object.getParseFile("imagen");
@@ -93,8 +101,12 @@ public class Datos {
                             lat = coordenadas.getLatitude();
                             lng = coordenadas.getLongitude();
                         }
-                        db.execSQL("insert into eventos (titulo, variedad, lugar, fecha, hora, precio, descripcion, latitud, longitud) " +
-                                "values ('" + objeto + "', '" + variedad + "', '" + lugar + "', '" + fecha + "', '" + hora + "', '" + precio + "', '" + descripcion + "', '" + lat + "', '" + lng + "')");
+
+                        db.execSQL("insert into eventos (titulo, variedad, lugar, fecha, hora, precio, descripcion, latitud, longitud, modificado) " +
+                                "values ('" + objeto + "', '" + variedad + "', '" + lugar + "', '" + fecha + "', '" + hora + "', '" + precio + "', '" + descripcion + "', '" + lat + "', '" + lng + "', '" + modificado + "')"//);
+
+                                + "where not exists (select titulo from eventos where titulo = '" + objeto + "')");
+
                     }
                     //Cerramos la base de datos
                     db.close();

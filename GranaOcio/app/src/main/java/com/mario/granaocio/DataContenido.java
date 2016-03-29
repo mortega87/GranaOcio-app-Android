@@ -22,6 +22,7 @@ public class DataContenido{
     static String precio;
     static String descripcion;
     static Context contexto;
+    static Integer modificado;
     static List<Evento> items = new ArrayList<>();
 
 
@@ -42,7 +43,7 @@ public class DataContenido{
            if(variedad.equals("Flamenco y Danza"))
                cursor = db.rawQuery("select titulo, variedad, lugar, fecha, hora, precio, descripcion from eventos where variedad='Flamenco y Danza'", null);
             */
-           cursor = db.rawQuery("select titulo, variedad, lugar, fecha, hora, precio, descripcion from eventos", null);
+           cursor = db.rawQuery("select titulo, variedad, lugar, fecha, hora, precio, descripcion, modificado from eventos", null);
            //Nos aseguramos de que existe al menos un registro
            if (cursor.moveToFirst()) {
                //Recorremos el cursor hasta que no haya mas registros
@@ -53,7 +54,13 @@ public class DataContenido{
                    hora = cursor.getString(4);
                    precio = cursor.getString(5);
                    descripcion = cursor.getString(6);
-                   items.add(new Evento(objeto, null, R.drawable.teatro1, lugar, fecha, hora, precio, descripcion, contexto));
+                   modificado = cursor.getInt(7);
+
+                   if(modificado == 0){
+                       items.add(new Evento(objeto, null, R.drawable.teatro1, lugar, fecha, hora, precio, descripcion, contexto));
+                   }
+
+
                } while (cursor.moveToNext());
            }
        }

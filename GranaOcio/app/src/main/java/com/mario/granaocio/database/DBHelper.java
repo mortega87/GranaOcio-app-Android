@@ -4,9 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by araluce1 on 31/07/2015.
- */
+
 public class DBHelper extends SQLiteOpenHelper {
     private static String DB_NAME ="GranaOcio.db";
     public static final int DATABASE_VERSION = 1;
@@ -20,8 +18,9 @@ public class DBHelper extends SQLiteOpenHelper {
             "`hora` TEXT NOT NULL," +
             "`precio` TEXT NOT NULL," +
             "`descripcion` TEXT NOT NULL," +
-            "`latitud` DOUBLE," +
-            "`longitud` DOUBLE" +
+            "`latitud` DOUBLE NOT NULL," +
+            "`longitud` DOUBLE NOT NULL," +
+            "`modificado` INTEGER NOT NULL"+
             ")";
 
 

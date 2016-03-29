@@ -61,6 +61,7 @@ public class MapsActivity extends FragmentActivity {
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
         mMap.addMarker(new MarkerOptions().position(coordenada).title("Marcador"));
+        
     }
 
 
