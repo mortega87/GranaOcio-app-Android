@@ -46,6 +46,8 @@ public class Datos {
     }
 
     public static void Update(Context c){
+
+
         contexto = c;
         final ParseQuery<ParseObject> query = ParseQuery.getQuery("Evento");
         query.orderByDescending("fecha");
@@ -56,6 +58,9 @@ public class Datos {
                     //Abrimos la base de datos en modo escritura
                     DBHelper mDB = new DBHelper(contexto);
                     SQLiteDatabase db = mDB.getWritableDatabase();
+
+                    mDB.deleteTable(db);
+
                     for (int i = 0; i < list.size(); i++) {
                         Double lat = null;
                         Double lng = null;
@@ -92,24 +97,25 @@ public class Datos {
                                         e.printStackTrace();
                                 }
                             });*/
-
-
                         }
-
 
                         if(coordenadas != null) {
                             lat = coordenadas.getLatitude();
                             lng = coordenadas.getLongitude();
                         }
 
-                        db.execSQL("insert into eventos (titulo, variedad, lugar, fecha, hora, precio, descripcion, latitud, longitud, modificado) " +
-                                "values ('" + objeto + "', '" + variedad + "', '" + lugar + "', '" + fecha + "', '" + hora + "', '" + precio + "', '" + descripcion + "', '" + lat + "', '" + lng + "', '" + modificado + "')"//);
 
-                                + "where not exists (select titulo from eventos where titulo = '" + objeto + "')");
+                            db.execSQL("insert into eventos (titulo, variedad, lugar, fecha, hora, precio, descripcion, latitud, longitud, modificado) " +
+                                    "values ('" + objeto + "', '" + variedad + "', '" + lugar + "', '" + fecha + "', '" + hora + "', '" + precio + "', '" + descripcion + "', '" + lat + "', '" + lng + "', '" + modificado + "')");
+
+                             //+ "where not exists (select titulo from eventos where titulo = '" + objeto + "')");
 
                     }
+
+
                     //Cerramos la base de datos
                     db.close();
+
 
                 } else Log.d("Update", "Error");
             }

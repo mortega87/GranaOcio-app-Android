@@ -30,10 +30,17 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //db.execSQL("DROP TABLE IF EXISTS eventos");
 
         //Se crea la nueva version de la tabla
         db.execSQL(sqlCreate);
+    }
+
+    public void deleteTable(SQLiteDatabase db){
+        db.execSQL("DROP TABLE IF EXISTS 'eventos'");
+
+        //Se crea la nueva version de la tabla
+        db.execSQL(sqlCreate);
+
     }
 
     @Override
@@ -44,7 +51,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //      a la nueva, por lo que este metodo deberia ser mas elaborado.
 
         //Se elimina la version anterior de la tabla
-        //db.execSQL("DROP TABLE IF EXISTS eventos");
+        db.execSQL("DROP TABLE IF EXISTS eventos");
 
         //Se crea la nueva version de la tabla
         db.execSQL(sqlCreate);
