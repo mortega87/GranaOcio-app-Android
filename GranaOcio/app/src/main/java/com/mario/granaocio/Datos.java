@@ -108,13 +108,15 @@ public class Datos {
                             db.execSQL("insert into eventos (titulo, variedad, lugar, fecha, hora, precio, descripcion, latitud, longitud, modificado) " +
                                     "values ('" + objeto + "', '" + variedad + "', '" + lugar + "', '" + fecha + "', '" + hora + "', '" + precio + "', '" + descripcion + "', '" + lat + "', '" + lng + "', '" + modificado + "')");
 
-                             //+ "where not exists (select titulo from eventos where titulo = '" + objeto + "')");
+
 
                     }
 
 
                     //Cerramos la base de datos
                     db.close();
+
+
 
 
                 } else Log.d("Update", "Error");

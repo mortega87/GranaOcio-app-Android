@@ -49,7 +49,6 @@ public class MainActivity extends Activity {
         DataFlamenco.obtenerVariedad(this);
         DataMuseos.obtenerVariedad(this);
         DataTeatro.obtenerVariedad(this);
-        //DataContenido.esperarConsulta();
 
         Log.d("MainActivity", "Oncreate");
 
