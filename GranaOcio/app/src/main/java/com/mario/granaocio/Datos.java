@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import com.mario.granaocio.database.DBHelper;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
@@ -26,6 +27,7 @@ import java.util.List;
 
 
 public class Datos {
+    static String id;
     static String objeto;
     static String variedad;
     static String lugar;
@@ -38,23 +40,21 @@ public class Datos {
     static int modificado;
     static List<Evento> items = new ArrayList<>();
 
-    static ParseFile imagen;
-
-
     public List<Evento> getitems(){
         return items;
     }
 
     public static void Update(Context c){
 
-
         contexto = c;
         final ParseQuery<ParseObject> query = ParseQuery.getQuery("Evento");
         query.orderByDescending("fecha");
+
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, com.parse.ParseException e) {
                 if (e == null) {
+
                     //Abrimos la base de datos en modo escritura
                     DBHelper mDB = new DBHelper(contexto);
                     SQLiteDatabase db = mDB.getWritableDatabase();
@@ -66,6 +66,8 @@ public class Datos {
                         Double lng = null;
 
                         ParseObject object = list.get(i);
+                        id = object.getObjectId();
+
                         objeto = object.getString("titulo");
                         variedad = object.getString("variedad");
                         lugar = object.getString("lugar");
@@ -75,39 +77,62 @@ public class Datos {
                         descripcion = object.getString("descripcion");
                         coordenadas = object.getParseGeoPoint("localizacion");
 
-                        if (object.getBoolean("modificado")){
+
+                        if (object.getBoolean("modificado")) {
                             modificado = 1;
-                        }
-                        else{
+                        } else {
                             modificado = 0;
                         }
 
-                        View v = View.inflate(contexto, R.layout.fragment_carta, null);
+                        ParseFile imagen = (ParseFile)object.get("imagen");
+
+                        if(imagen != null) {
+
+                            imagen.getDataInBackground(new GetDataCallback() {
+                                @Override
+                                public void done(byte[] bytes, ParseException e) {
+                                    if (e == null) {
+                                        // data has the bytes for the resume
+                                        //Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                        //Para meter como blob asociamos el bytes
+                                        String entro = "hola";
+                                        Log.d("Entro",entro);
+                                    } else {
+                                        // something went wrong
+                                        Log.d("something went wrong","Error");
+                                    }
+                                }
+                            });
+                        }
+
+
+
+                        /*View v = View.inflate(contexto, R.layout.fragment_carta, null);
                         ParseImageView imageView = (ParseImageView)v.findViewById(R.id.imagen_evento);
                         ParseFile imagen = object.getParseFile("imagen");
 
                         if(imagen != null){
                             imageView.setParseFile(imagen);
-                            //String prueba = imageView.toString();
-                            //Log.d("Prueba",prueba);
-                            /*imageView.loadInBackground(new GetDataCallback() {
+                            String prueba = imageView.toString();
+                            Log.d("Prueba",prueba);
+                            imageView.loadInBackground(new GetDataCallback() {
                                 @Override
                                 public void done(byte[] bytes, ParseException e) {
                                     if (e != null)
                                         e.printStackTrace();
                                 }
-                            });*/
-                        }
+                            });
+                        }*/
 
-                        if(coordenadas != null) {
+
+                        if (coordenadas != null) {
                             lat = coordenadas.getLatitude();
                             lng = coordenadas.getLongitude();
                         }
 
 
-                            db.execSQL("insert into eventos (titulo, variedad, lugar, fecha, hora, precio, descripcion, latitud, longitud, modificado) " +
-                                    "values ('" + objeto + "', '" + variedad + "', '" + lugar + "', '" + fecha + "', '" + hora + "', '" + precio + "', '" + descripcion + "', '" + lat + "', '" + lng + "', '" + modificado + "')");
-
+                        db.execSQL("insert into eventos (titulo, variedad, lugar, fecha, hora, precio, descripcion, latitud, longitud, modificado) " +
+                                "values ('" + objeto + "', '" + variedad + "', '" + lugar + "', '" + fecha + "', '" + hora + "', '" + precio + "', '" + descripcion + "', '" + lat + "', '" + lng + "', '" + modificado + "')");
 
 
                     }
@@ -117,12 +142,14 @@ public class Datos {
                     db.close();
 
 
-
-
                 } else Log.d("Update", "Error");
             }
+
         });
 
 
+
     }
-}
+
+}//clase
+
