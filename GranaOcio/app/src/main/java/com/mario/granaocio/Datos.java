@@ -37,7 +37,6 @@ public class Datos {
     static String descripcion;
     static ParseGeoPoint coordenadas;
     static Context contexto;
-    static int modificado;
     static List<Evento> items = new ArrayList<>();
 
     public List<Evento> getitems(){
@@ -76,13 +75,6 @@ public class Datos {
                         precio = object.getString("precio");
                         descripcion = object.getString("descripcion");
                         coordenadas = object.getParseGeoPoint("localizacion");
-
-
-                        if (object.getBoolean("modificado")) {
-                            modificado = 1;
-                        } else {
-                            modificado = 0;
-                        }
 
                         ParseFile imagen = (ParseFile)object.get("imagen");
 
@@ -131,8 +123,8 @@ public class Datos {
                         }
 
 
-                        db.execSQL("insert into eventos (titulo, variedad, lugar, fecha, hora, precio, descripcion, latitud, longitud, modificado) " +
-                                "values ('" + objeto + "', '" + variedad + "', '" + lugar + "', '" + fecha + "', '" + hora + "', '" + precio + "', '" + descripcion + "', '" + lat + "', '" + lng + "', '" + modificado + "')");
+                        db.execSQL("insert into eventos (titulo, variedad, lugar, fecha, hora, precio, descripcion, latitud, longitud) " +
+                                "values ('" + objeto + "', '" + variedad + "', '" + lugar + "', '" + fecha + "', '" + hora + "', '" + precio + "', '" + descripcion + "', '" + lat + "', '" + lng + "')");
 
 
                     }

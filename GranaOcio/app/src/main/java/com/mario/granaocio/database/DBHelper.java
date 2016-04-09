@@ -19,8 +19,7 @@ public class DBHelper extends SQLiteOpenHelper {
             "`precio` TEXT NOT NULL," +
             "`descripcion` TEXT NOT NULL," +
             "`latitud` DOUBLE NOT NULL," +
-            "`longitud` DOUBLE NOT NULL," +
-            "`modificado` INTEGER NOT NULL"+
+            "`longitud` DOUBLE NOT NULL" +
             ")";
 
 
