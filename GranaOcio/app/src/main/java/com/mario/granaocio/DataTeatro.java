@@ -3,6 +3,8 @@ package com.mario.granaocio;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import com.mario.granaocio.database.DBHelper;
@@ -24,6 +26,8 @@ public class DataTeatro {
     static String hora;
     static String precio;
     static String descripcion;
+    static byte[] imagen;
+    static Bitmap imagenTransformada;
     static List<Evento> items = new ArrayList<>();
 
 
@@ -51,7 +55,12 @@ public class DataTeatro {
                     hora = cursor.getString(4);
                     precio = cursor.getString(5);
                     descripcion = cursor.getString(6);
-                    items.add(new Evento(objeto, null, R.drawable.teatro1, lugar, fecha, hora, precio, descripcion, contexto));
+                   // imagen=cursor.getBlob(7);
+
+                    //imagenTransformada = BitmapFactory.decodeByteArray(imagen, 0, imagen.length);
+                    imagenTransformada = BitmapFactory.decodeFile("/sdcard/img");
+
+                    items.add(new Evento(objeto, null, imagenTransformada, lugar, fecha, hora, precio, descripcion, contexto));
                 } while (cursor.moveToNext());
             }
         }

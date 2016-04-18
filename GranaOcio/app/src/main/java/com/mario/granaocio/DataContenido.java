@@ -3,10 +3,18 @@ package com.mario.granaocio;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
+import android.provider.ContactsContract;
+import android.widget.ImageView;
+
 import com.mario.granaocio.database.DBHelper;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +30,8 @@ public class DataContenido{
     static String precio;
     static String descripcion;
     static Context contexto;
+    static byte[] imagen;
+    static Bitmap imagenTransformada;
     static List<Evento> items = new ArrayList<>();
 
 
@@ -42,7 +52,8 @@ public class DataContenido{
            if(variedad.equals("Flamenco y Danza"))
                cursor = db.rawQuery("select titulo, variedad, lugar, fecha, hora, precio, descripcion from eventos where variedad='Flamenco y Danza'", null);
             */
-           cursor = db.rawQuery("select titulo, variedad, lugar, fecha, hora, precio, descripcion from eventos", null);
+           cursor = db.rawQuery("select titulo, variedad, lugar, fecha, hora, precio, descripcion, imagen from eventos", null);
+
            //Nos aseguramos de que existe al menos un registro
            if (cursor.moveToFirst()) {
                //Recorremos el cursor hasta que no haya mas registros
@@ -55,7 +66,14 @@ public class DataContenido{
                    descripcion = cursor.getString(6);
 
 
-                   items.add(new Evento(objeto, null, R.drawable.teatro1, lugar, fecha, hora, precio, descripcion, contexto));
+                   //imagenTransformada = BitmapFactory.decodeByteArray();
+
+                   imagenTransformada = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().getPath() + "/img");
+
+
+
+
+                   items.add(new Evento(objeto, null, imagenTransformada, lugar, fecha, hora, precio, descripcion, contexto));
 
 
 

@@ -1,6 +1,7 @@
 package com.mario.granaocio;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 
 import java.util.Date;
 
@@ -11,7 +12,7 @@ public class Evento {
 
     private String evento;
     private String variedad;
-    private int imagen;
+    private Bitmap imagen;
     private String lugar;
     private String fecha;
     private String hora;
@@ -19,7 +20,7 @@ public class Evento {
     private String descripcion;
     private Context contexto;
 
-    public Evento(String s, String v, int img, String l, String f, String h, String p, String d, Context c){
+    public Evento(String s, String v, Bitmap img, String l, String f, String h, String p, String d, Context c){
 
         this.evento = s;
         this.variedad = v;
@@ -36,7 +37,7 @@ public class Evento {
 
     public String getVariedad(){return variedad;}
 
-    public int getImagen(){return imagen;}
+    public Bitmap getImagen(){return imagen;}
 
     public String getLugar(){
         return lugar;
@@ -58,7 +59,7 @@ public class Evento {
 
     public Context getContexto(){return contexto;}
 
-    public void setImagen(int img){this.imagen = img;}
+    //public void setImagen(int img){this.imagen = img;}
 
 
 }

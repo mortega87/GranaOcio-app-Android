@@ -63,7 +63,8 @@ public class AdapterMain extends RecyclerView.Adapter<AdapterMain.EventoViewHold
 
     @Override
     public void onBindViewHolder(EventoViewHolder viewHolder, int i) {
-        viewHolder.imagen.setImageResource(items.get(i).getImagen());
+        //viewHolder.imagen.setImageResource(items.get(i).getImagen());
+        viewHolder.imagen.setImageBitmap(items.get(i).getImagen());
         viewHolder.evento.setText(items.get(i).getEvento());
         viewHolder.lugar.setText("Lugar: " + items.get(i).getLugar());
         viewHolder.fecha.setText("Fecha: " + items.get(i).getFecha());
