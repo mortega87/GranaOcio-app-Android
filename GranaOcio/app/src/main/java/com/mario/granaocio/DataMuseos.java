@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.util.Log;
 
 import com.mario.granaocio.database.DBHelper;
@@ -25,7 +26,7 @@ public class DataMuseos {
     static String hora;
     static String precio;
     static String descripcion;
-    static byte[] imagen;
+    static String id;
     static Bitmap imagenTransformada;
     static List<Evento> items = new ArrayList<>();
 
@@ -43,7 +44,7 @@ public class DataMuseos {
         if (db != null) {
             Cursor cursor;
 
-            cursor = db.rawQuery("select titulo, variedad, lugar, fecha, hora, precio, descripcion, imagen from eventos WHERE variedad='Museos'", null);
+            cursor = db.rawQuery("select titulo, variedad, lugar, fecha, hora, precio, descripcion, id from eventos WHERE variedad='Museos'", null);
             //Nos aseguramos de que existe al menos un registro
             if (cursor.moveToFirst()) {
                 //Recorremos el cursor hasta que no haya mas registros
@@ -54,10 +55,10 @@ public class DataMuseos {
                     hora = cursor.getString(4);
                     precio = cursor.getString(5);
                     descripcion = cursor.getString(6);
-                    //imagen=cursor.getBlob(7);
+                    id = cursor.getString(7);
 
-                    //imagenTransformada = BitmapFactory.decodeByteArray(imagen, 0, imagen.length);
-                    imagenTransformada = BitmapFactory.decodeFile("/sdcard/img");
+                    imagenTransformada = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().getPath() + "/img/" + id);
+
                     items.add(new Evento(objeto, null, imagenTransformada, lugar, fecha, hora, precio, descripcion, contexto));
                 } while (cursor.moveToNext());
             }

@@ -59,7 +59,6 @@ public class Evento {
 
     public Context getContexto(){return contexto;}
 
-    //public void setImagen(int img){this.imagen = img;}
 
 
 }

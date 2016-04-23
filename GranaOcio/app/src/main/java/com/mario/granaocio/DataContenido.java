@@ -6,15 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
-import android.provider.ContactsContract;
-import android.widget.ImageView;
 
 import com.mario.granaocio.database.DBHelper;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-
-import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +23,7 @@ public class DataContenido{
     static String precio;
     static String descripcion;
     static Context contexto;
-    static byte[] imagen;
+    static String id;
     static Bitmap imagenTransformada;
     static List<Evento> items = new ArrayList<>();
 
@@ -52,7 +45,7 @@ public class DataContenido{
            if(variedad.equals("Flamenco y Danza"))
                cursor = db.rawQuery("select titulo, variedad, lugar, fecha, hora, precio, descripcion from eventos where variedad='Flamenco y Danza'", null);
             */
-           cursor = db.rawQuery("select titulo, variedad, lugar, fecha, hora, precio, descripcion, imagen from eventos", null);
+           cursor = db.rawQuery("select titulo, variedad, lugar, fecha, hora, precio, descripcion, id from eventos", null);
 
            //Nos aseguramos de que existe al menos un registro
            if (cursor.moveToFirst()) {
@@ -64,12 +57,15 @@ public class DataContenido{
                    hora = cursor.getString(4);
                    precio = cursor.getString(5);
                    descripcion = cursor.getString(6);
+                   id = cursor.getString(7);
 
 
                    //imagenTransformada = BitmapFactory.decodeByteArray();
 
-                   imagenTransformada = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().getPath() + "/img");
+                   imagenTransformada = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().getPath() + "/img/" + id);
 
+                   //String s = imagenTransformada.toString();
+                   //Log.d("Imagen",s );
 
 
 

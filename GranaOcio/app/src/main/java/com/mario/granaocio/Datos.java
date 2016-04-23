@@ -83,8 +83,8 @@ public class Datos {
                             lng = coordenadas.getLongitude();
                         }
 
-                        db.execSQL("insert into eventos (titulo, variedad, lugar, fecha, hora, precio, descripcion, latitud, longitud) " +
-                                "values ('" + objeto + "', '" + variedad + "', '" + lugar + "', '" + fecha + "', '" + hora + "', '" + precio + "', '" + descripcion + "', '" + lat + "', '" + lng + "')");
+                        db.execSQL("insert into eventos (titulo, variedad, lugar, fecha, hora, precio, descripcion, latitud, longitud, id) " +
+                                "values ('" + objeto + "', '" + variedad + "', '" + lugar + "', '" + fecha + "', '" + hora + "', '" + precio + "', '" + descripcion + "', '" + lat + "', '" + lng + "', '" + id + "')");
 
 
                         retirarImagen(object);
@@ -104,6 +104,10 @@ public class Datos {
 
 
 
+    }
+
+    public static String getID(){
+        return id;
     }
 
 

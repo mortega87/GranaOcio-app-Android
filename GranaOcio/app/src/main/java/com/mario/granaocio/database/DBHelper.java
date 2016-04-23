@@ -20,7 +20,7 @@ public class DBHelper extends SQLiteOpenHelper {
             "`descripcion` TEXT NOT NULL," +
             "`latitud` DOUBLE NOT NULL," +
             "`longitud` DOUBLE NOT NULL," +
-            "`imagen` BLOB" +
+            "`id` TEXT NOT NULL" +
             ")";
 
 
