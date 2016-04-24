@@ -13,6 +13,7 @@
     <uses-permission android:name="package.name.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <permission
         android:name="package.name.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />

@@ -12,6 +12,8 @@ android:background="#FF0000">
     android:textAppearance="@android:style/TextAppearance.Theme"
     android:id="@+id/texto_toolbar"
     android:textColor="@android:color/white"
+    android:textStyle="bold|italic"
+    android:typeface="monospace"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     />
