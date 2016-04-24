@@ -32,4 +32,5 @@ dependencies {
     compile files('C:/Users/Mario/Desktop/GranaOcio-App-master2/GranaOcio/.idea/libraries/Parse-1.9.4.jar')
     compile 'com.balysv:material-ripple:1.0.2'
     compile files('C:/Users/mario/Documents/Repositorios_Git/GranaOcio-app-Android/GranaOcio/.idea/libraries/Parse-1.9.4.jar')
+    compile files('C:/Users/mario/Documents/Repositorios_Git/GranaOcio-app-Android/GranaOcio/.idea/libraries/json.jar')
 }
