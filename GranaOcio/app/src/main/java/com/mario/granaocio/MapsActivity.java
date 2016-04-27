@@ -1,43 +1,33 @@
 package com.mario.granaocio;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.mario.granaocio.database.DBHelper;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,6 +41,7 @@ public class MapsActivity extends FragmentActivity{
     private LatLng coordenada;
     private double lat;
     private double lng;
+    private String titulo;
     private double latCurrent;
     private double lngCurrent;
     private String strAdd;
@@ -73,13 +64,14 @@ public class MapsActivity extends FragmentActivity{
 
             Bundle bundle = getIntent().getExtras();
             String evento = bundle.getString("Titulo");
-            cursor = db.rawQuery("select latitud, longitud from eventos where titulo='"+evento+"'", null);
+            cursor = db.rawQuery("select latitud, longitud, titulo from eventos where titulo='"+evento+"'", null);
             //Nos aseguramos de que existe al menos un registro
             if (cursor.moveToFirst()) {
                 //Recorremos el cursor hasta que no haya mas registros
                 do {
                     lat = cursor.getDouble(0);
                     lng = cursor.getDouble(1);
+                    titulo = cursor.getString(2);
                 } while (cursor.moveToNext());
             }
         }
@@ -100,7 +92,9 @@ public class MapsActivity extends FragmentActivity{
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
-        mMap.addMarker(new MarkerOptions().position(coordenada).title("Marcador"));
+
+        Marker marker = mMap.addMarker(new MarkerOptions().position(coordenada).title(titulo).snippet("Tu Destino"));
+        marker.showInfoWindow();
 
         LocationManager location = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         List<String> providers = location.getProviders(true);
@@ -118,7 +112,9 @@ public class MapsActivity extends FragmentActivity{
         LatLng currentPoint = new LatLng(latCurrent,lngCurrent);
         points.add(currentPoint);
 
-        mMap.addMarker(new MarkerOptions().position(currentPoint).title("Marcador"));
+        Marker markercurrent=mMap.addMarker(new MarkerOptions().position(currentPoint).title("Estas Aquí"));
+        markercurrent.showInfoWindow();
+
 
         String url = getDirectionsUrl(coordenada, currentPoint);
 

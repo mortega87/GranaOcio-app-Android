@@ -16,6 +16,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import android.os.Handler;
+import java.util.logging.LogRecord;
 
 
 public class MainActivity extends Activity {
@@ -40,17 +42,28 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);  //Lanzamos la vista principal
 
+
+
+
+
+                DataContenido.obtenerVariedad(getApplicationContext(), "variedad");
+                DataMusica.obtenerVariedad(getApplicationContext());
+                DataFlamenco.obtenerVariedad(getApplicationContext());
+                DataMuseos.obtenerVariedad(getApplicationContext());
+                DataTeatro.obtenerVariedad(getApplicationContext());
+
+                Log.d("MainActivity", "Oncreate");
+
+
+
+
         menuLateral(); //Cargamos el menu lateral
         actionBar();
 
-        datos.Update(this);
-        DataContenido.obtenerVariedad(this, "variedad");
-        DataMusica.obtenerVariedad(this);
-        DataFlamenco.obtenerVariedad(this);
-        DataMuseos.obtenerVariedad(this);
-        DataTeatro.obtenerVariedad(this);
 
-        Log.d("MainActivity", "Oncreate");
+
+
+
 
     }
 

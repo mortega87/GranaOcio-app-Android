@@ -3,6 +3,7 @@ package com.mario.granaocio;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;

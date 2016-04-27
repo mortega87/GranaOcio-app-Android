@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Window;
 
 /**
@@ -13,6 +14,7 @@ public class Splash extends Activity {
 
     protected boolean active = true;
     protected int splashTime = 3000;
+    static Datos datos;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,10 @@ public class Splash extends Activity {
                 try{
                     int waited = 0;
                     while(active && (waited < splashTime)){
-                        sleep(100);
+
+                        datos.Update(getApplicationContext());
+
+                        sleep(200);
                         if(active){
                             waited += 100;
                         }
