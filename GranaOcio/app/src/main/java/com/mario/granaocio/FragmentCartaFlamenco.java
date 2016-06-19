@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -53,6 +54,8 @@ public class FragmentCartaFlamenco extends Fragment implements View.OnClickListe
         List<Evento> lista = datos.getitems();
 
         titulo = lista.get(id).getEvento();
+        ImageView imageView = (ImageView)v.findViewById(R.id.imagen_evento);
+        imageView.setImageResource(R.drawable.flamenco);
         ((TextView) v.findViewById(R.id.titulo_evento)).setText("Titulo: "+titulo);
         ((TextView) v.findViewById(R.id.descripcion_evento)).setText("Descripcion: " + lista.get(id).getDescripcion());
         ((TextView) v.findViewById(R.id.lugar_evento)).setText("Lugar: "+lista.get(id).getLugar());

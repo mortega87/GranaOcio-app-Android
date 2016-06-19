@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.parse.ParseObject;
@@ -57,6 +58,10 @@ public class FragmentCarta extends Fragment implements View.OnClickListener {
         List<Evento> lista = datos.getitems();
 
         titulo = lista.get(id).getEvento();
+
+        ImageView imageView = (ImageView)v.findViewById(R.id.imagen_evento);
+        imageView.setImageResource(R.drawable.museos2);
+
         ((TextView) v.findViewById(R.id.titulo_evento)).setText("Titulo: " + titulo);
         ((TextView) v.findViewById(R.id.descripcion_evento)).setText("Descripcion: " + lista.get(id).getDescripcion());
         ((TextView) v.findViewById(R.id.lugar_evento)).setText("Lugar: " + lista.get(id).getLugar());

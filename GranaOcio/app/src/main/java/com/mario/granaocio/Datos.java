@@ -106,11 +106,6 @@ public class Datos {
 
     }
 
-    public static String getID(){
-        return id;
-    }
-
-
     public static void retirarImagen(final ParseObject object){
 
         ParseFile imagen = (ParseFile)object.get("imagen");

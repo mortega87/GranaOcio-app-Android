@@ -3,12 +3,15 @@ package com.mario.granaocio;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -22,6 +25,7 @@ public class FragmentCartaMuseos extends Fragment implements View.OnClickListene
     static int id;
     private Context contexto;
     private String titulo;
+
 
     public FragmentCartaMuseos() {
         // Required empty public constructor
@@ -52,7 +56,9 @@ public class FragmentCartaMuseos extends Fragment implements View.OnClickListene
         List<Evento> lista = datos.getitems();
 
         titulo = lista.get(id).getEvento();
-        ((TextView) v.findViewById(R.id.titulo_evento)).setText("Titulo: "+titulo);
+        ImageView imageView = (ImageView)v.findViewById(R.id.imagen_evento);
+        imageView.setImageResource(R.drawable.museos2);
+        ((TextView) v.findViewById(R.id.titulo_evento)).setText("Titulo: " + titulo);
         ((TextView) v.findViewById(R.id.descripcion_evento)).setText("Descripcion: " + lista.get(id).getDescripcion());
         ((TextView) v.findViewById(R.id.lugar_evento)).setText("Lugar: "+lista.get(id).getLugar());
         ((TextView) v.findViewById(R.id.hora_evento)).setText("Hora: " + lista.get(id).getHora());
