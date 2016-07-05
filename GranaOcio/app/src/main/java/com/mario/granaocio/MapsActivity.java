@@ -88,7 +88,7 @@ public class MapsActivity extends FragmentActivity{
 
         mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coordenada, 10));//10 es el zoom
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coordenada, 15));//10 es el zoom
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
